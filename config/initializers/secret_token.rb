@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-CRM::Application.config.secret_key_base = 'f26c842bad639e69e672894c9c6177a378b0462048412b156e714bb3ad2e32642cdcdfa024fc3f995b3ec39157de8a0d779ac4bd90f6666c205b1bd170eeb2c4'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+CRM::Application.config.secret_key_base = secure_token

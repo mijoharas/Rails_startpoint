@@ -22,6 +22,7 @@ doc/
 .project
 .DS_Store
 .idea
+.secret
 bundler_stubs/
 zeus.json
 custom_plan.rb
