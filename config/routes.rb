@@ -1,4 +1,7 @@
 CRM::Application.routes.draw do
+  get "session/new"
+  get "session/create"
+  get "session/destroy"
   # static pages
   get "static_pages/home"
   get "static_pages/help"
